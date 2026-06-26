@@ -171,3 +171,5 @@ set(RUNTIMES_hexagon-unknown-linux-musl_COMPILER_RT_BUILD_SANITIZERS ON CACHE BO
 set(RUNTIMES_hexagon-unknown-linux-musl_COMPILER_RT_BUILD_XRAY ON CACHE BOOL "")
 set(RUNTIMES_hexagon-unknown-linux-musl_COMPILER_RT_BUILD_MEMPROF ON CACHE BOOL "")
 set(RUNTIMES_hexagon-unknown-linux-musl_COMPILER_RT_BUILD_CTX_PROFILE ON CACHE BOOL "")
+# GWP-ASan's libc backtrace path uses execinfo.h (glibc-only); musl doesn't provide it.
+set(RUNTIMES_hexagon-unknown-linux-musl_COMPILER_RT_BUILD_GWP_ASAN OFF CACHE BOOL "")

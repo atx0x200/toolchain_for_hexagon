@@ -33,7 +33,7 @@ build_llvm_clang_cross() {
 	# Build distribution components list — ELD is skipped for cross-builds
 	# (LLD is sufficient); only the native build includes ld.eld.
 	DIST_COMPONENTS=(
-		clang clang-resource-headers lld LTO
+		clang clang-resource-headers lld
 		llvm-addr2line llvm-ar llvm-config llvm-cov llvm-cxxfilt llvm-dwarfdump
 		llvm-mc llvm-nm llvm-objcopy llvm-objdump llvm-profdata
 		llvm-ranlib llvm-readelf llvm-readobj
@@ -504,7 +504,7 @@ done
 build_runtimes
 #build_sanitizers
 
-build_picolibc
+#build_picolibc
 install_baremetal_cfg
 
 for t in ${CROSS_ALL}
@@ -513,7 +513,7 @@ do
 	cp ${TOOLCHAIN_BIN}/hexagon-unknown-none-elf.cfg ${TOOLCHAIN_INSTALL}/${t}/bin/ 2>/dev/null || true
 	ln -sf hexagon-unknown-none-elf.cfg ${TOOLCHAIN_INSTALL}/${t}/bin/hexagon.cfg 2>/dev/null || true
 done
-build_qemu
+#build_qemu
 
 cd ${BASE}
 
