@@ -182,7 +182,7 @@ build_runtimes() {
 
 config_kernel() {
 	cd ${BASE}
-	mkdir obj_linux
+	mkdir -p obj_linux
 	cd linux
 	make O=../obj_linux ARCH=hexagon \
 		CROSS_COMPILE=${CC_PREFIX} \
