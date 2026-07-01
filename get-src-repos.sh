@@ -9,21 +9,18 @@ SRC_DIR=${1}
 MANIFEST_DIR=${2}
 
 echo Cloning repos into "${SRC_DIR}":
-git clone -q https://github.com/llvm/llvm-project &
-git clone -q https://github.com/llvm/llvm-test-suite &
-git clone --depth=1 -q git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux &
+git clone --branch llvmorg-22.1.8 --depth 1 https://llvm.googlesource.com/llvm-project
+git clone --depth=1 -q https://github.com/llvm/llvm-test-suite &
+git clone --depth=1 -q https://github.com/atx0x200/RubikPi-HexagonLinux.git &
 git clone --depth=1 -q https://github.com/python/cpython &
 git clone --depth=1 -q git://repo.or.cz/libc-test &
 git clone -q https://git.busybox.net/busybox/ &
-git clone -q https://github.com/quic/buildroot/ &
-
-
-git clone -q --branch=hexagon-v1.2.4-dec-2025 https://github.com/quic/musl &
-git clone -q https://github.com/quic/hexagonMVM &
-git clone -q https://github.com/qemu/qemu &
+git clone -q https://github.com/atx0x200/buildroot.git
+git clone -q https://github.com/atx0x200/musl.git
 
 wait
-git clone -q https://github.com/qualcomm/eld/ llvm-project/eld/
+git clone --branch release/22.x --depth 1 https://github.com/qualcomm/eld/ llvm-project/eld/
+ln -s RubikPi-HexagonLinux/hexagon linux
 
 dump_checkout_info() {
 	out=${1}
