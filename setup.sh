@@ -1,4 +1,5 @@
 export ARTIFACT_TAG=main
+export VER=22.1.8
 export TOOLCHAIN_INSTALL=$PWD/clang+llvm-${ARTIFACT_TAG}
 export ROOT_INSTALL=$PWD/install_rootfs
 export ARTIFACT_BASE=$PWD/artifacts

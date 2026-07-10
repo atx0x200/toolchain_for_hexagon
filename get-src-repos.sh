@@ -9,7 +9,7 @@ SRC_DIR=${1}
 MANIFEST_DIR=${2}
 
 echo Cloning repos into "${SRC_DIR}":
-git clone --branch llvmorg-22.1.8 --depth 1 https://llvm.googlesource.com/llvm-project
+git clone --branch llvmorg-${VER} --depth 1 https://llvm.googlesource.com/llvm-project
 git clone --depth=1 -q https://github.com/llvm/llvm-test-suite &
 git clone --depth=1 -q https://github.com/atx0x200/RubikPi-HexagonLinux.git &
 git clone --depth=1 -q https://github.com/python/cpython &
@@ -39,6 +39,21 @@ dump_checkout_info() {
 
 mkdir -p ${MANIFEST_DIR}
 dump_checkout_info ${MANIFEST_DIR}
+
+apply_patches() {
+	local repo_name=$1
+	local tag_name=$2
+	local patch_dir=${SRC_DIR}/patches/${repo_name}/${tag_name}
+	if compgen -G "${patch_dir}/*.patch" > /dev/null 2>&1; then
+		echo "Applying patches from ${patch_dir}"
+		for p in "${patch_dir}"/*.patch; do
+			echo "  Applying $(basename "$p")"
+			patch -p1 < "$p"
+		done
+	fi
+}
+cd llvm-project
+apply_patches llvm-project llvmorg-${VER}
 
 cat <<EOF
 Now that you've cloned the source repos, refer to Dockerfile to find the git refs
