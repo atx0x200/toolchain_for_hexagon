@@ -9,7 +9,7 @@ SRC_DIR=${1}
 MANIFEST_DIR=${2}
 
 echo Cloning repos into "${SRC_DIR}":
-git clone --branch llvmorg-${VER} --depth 1 https://llvm.googlesource.com/llvm-project
+git clone --branch RubikPI --depth 1 https://github.com/atx0x200/llvm-project.git
 git clone --depth=1 -q https://github.com/llvm/llvm-test-suite &
 git clone --depth=1 -q https://github.com/atx0x200/RubikPi-HexagonLinux.git &
 git clone --depth=1 -q https://github.com/python/cpython &
@@ -19,7 +19,7 @@ git clone -q https://github.com/atx0x200/buildroot.git
 git clone -q https://github.com/atx0x200/musl.git
 
 wait
-git clone --branch release/22.x --depth 1 https://github.com/qualcomm/eld/ llvm-project/eld/
+git clone --branch release/23.x --depth 1 https://github.com/qualcomm/eld/ llvm-project/eld/
 ln -s RubikPi-HexagonLinux/hexagon linux
 
 dump_checkout_info() {
